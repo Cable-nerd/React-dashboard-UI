@@ -1,0 +1,45 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/responsive.scss" as *;
+
+.menu{
+ 
+    
+    .item{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        .title{
+            font-size: 12px;
+            font-weight: 200;
+            color: $soft-color;
+            text-transform: uppercase;
+
+            @include lg {
+                display: none;
+            }
+    }
+
+    .listItem {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            font-size: 14px;
+            color: $dark-color;
+            cursor: pointer;
+            border-radius: 5px;
+
+            &:hover{
+                background-color: $soft-bg;
+            }
+
+           .listItemTitle {
+            @include lg {
+                display: none;
+            }
+           }
+        }
+    }
+}

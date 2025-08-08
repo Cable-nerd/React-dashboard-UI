@@ -1,0 +1,65 @@
+@use "./variables" as *;
+@use "./responsive.scss" as *;
+
+:root {
+  font-family: "Inter", sans-serif;
+  background-color: $main-bg;
+  color: $main-color;
+  min-height: 100vh;
+  
+
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: $main-bg;
+  color: $main-color;
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+  
+}
+* {
+  margin: 0;
+  padding: 0;
+  
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.main {
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+  background-color: $main-bg;
+  
+  color: $main-color;
+}
+
+.container {
+  width: 100%;
+min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+
+}
+
+.menuContainer {
+  padding: 5px 20px;
+  width: 250px;
+  border-right: 2px solid $soft-bg;
+
+  @include lg{
+    width: max-content;
+  }
+}
+
+.contentContainer {
+  width: 100%;
+  padding: 5px 20px;
+
+}
