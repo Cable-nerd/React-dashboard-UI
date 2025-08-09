@@ -7,13 +7,7 @@ type Props = {
     id: number | string;
     img?: string;
     title: string;
-    info: {
-        productId: string,
-        color: string,
-        price: string,
-        producer: string,
-        export: string,
-    };
+    info: Record<string, string | number | boolean | object>,
     chart: {
         dataKeys: { name: string; color: string }[];
         data: { name: string; visits: number; orders: number }[];
@@ -40,7 +34,7 @@ const Single: React.FC<Props> = (props: Props) => {
                         {Object.entries(props.info).map(item => (
                             <div className="item" key={item[0]}>
                                 <div className="itemTitle">{item[0]}</div>
-                                <div className="itemValue">{item[1]}</div>
+                                <div className="itemValue">{typeof item[1] === 'object' ? JSON.stringify(item[1]) : item[1]}</div>
                             </div>
                         ))}
 
