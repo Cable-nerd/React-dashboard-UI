@@ -1,8 +1,8 @@
-import React from "react";
+
 import { Link } from "react-router";
 import { Line, LineChart, ResponsiveContainer, Tooltip } from "recharts";
 import "./chartBox.scss";
-
+/*
 const data = [
     {
         name: "Page A",
@@ -47,6 +47,8 @@ const data = [
         amt: 2100,
     },
 ];
+*/
+
 
 type Props = {
     color: string;

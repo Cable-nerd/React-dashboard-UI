@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import './users.scss';
 import DataTable from '../../components/dataTable/DataTable';
 import type { GridColDef } from '@mui/x-data-grid';
-import { userRows } from '../../data';
+
 import Add from '../../components/add/Add';
 import { useQuery } from '@tanstack/react-query';
 
@@ -87,11 +87,22 @@ const columns: GridColDef[] = [
   },
 
 ];
+type User = {
+  id?: number | string;
+  img?: string;
+  name?: string;
+  club?: string;
+  email: string;
+  phone?: string;
+  country?: string;
+  createdAt?: string;
+  verified?: boolean;
+};
 
 const Users = () => {
   const [open, setOpen] = useState(false);
 
-  const { isPending, data } = useQuery({
+  const { isPending, data } = useQuery<User[]>({
     queryKey: ["users"],
     queryFn: () =>
       fetch("http://localhost:8000/api/users").then(
@@ -111,7 +122,7 @@ const Users = () => {
         (<DataTable
           slug='users'
           columns={columns}
-          rows={data.map(user => ({
+          rows={(data ?? []).map(user => ({
             ...user,
             id: user.id || `email-${user.email}-${crypto.randomUUID()}` // Fallback with UUID
           }))}

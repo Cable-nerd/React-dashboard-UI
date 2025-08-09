@@ -27,7 +27,7 @@ const mutation = useMutation({
   },
   onSuccess: (data) => {
     console.log('Deleted successfully:', data.deletedId);
-    queryClient.invalidateQueries(['users']);
+    queryClient.invalidateQueries({ queryKey: ['users'] });
   },
   onError: (error) => {
     console.error(`Delete failed:`, error)
@@ -46,7 +46,7 @@ const mutation = useMutation({
                 },
                 onSuccess: (data) => {
                     console.log('Deleted successfully:', data.deletedId);
-                    queryClient.invalidateQueries(['users']);
+                    queryClient.invalidateQueries({ queryKey: ['users']  });
                 }
             });
         }

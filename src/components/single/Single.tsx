@@ -1,17 +1,22 @@
-import react from "react"
+
 import "./single.scss"
-import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { useParams } from 'react-router-dom';
+import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 
 type Props = {
-    id: number;
+    id: number | string;
     img?: string;
     title: string;
-    info: object[];
+    info: {
+        productId: string,
+        color: string,
+        price: string,
+        producer: string,
+        export: string,
+    };
     chart: {
         dataKeys: { name: string; color: string }[];
-        data: object[];
+        data: { name: string; visits: number; orders: number }[];
     }
     activities?: { time: string; text: string }[];
 }
@@ -74,7 +79,7 @@ const Single: React.FC<Props> = (props: Props) => {
             <div className="activities">
                 <h2>Latest Activities</h2>
                 <ul>
-                    {props.activities.map(activity => (
+                    {props.activities?.map(activity => (
                         <li key={activity.text}>
                             <div>
                                 <p>

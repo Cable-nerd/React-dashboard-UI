@@ -16,7 +16,7 @@ const Add = (props: Props) => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation({
-        mutationFn: (newItem: Record<string, any>) => {
+        mutationFn: () => {
             return fetch(`http://localhost:8000/api/${props.slug}`, {
                 method: "POST",
                 headers: {
