@@ -16,11 +16,7 @@ type Props = {
     activities?: { time: string; text: string }[];
 }
 
-const Single: React.FC<Props> = (props) => {
-    
-
-
-
+const Single: React.FC<Props> = (props: Props) => {
 
 
     return (
