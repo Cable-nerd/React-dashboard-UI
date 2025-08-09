@@ -10,13 +10,13 @@ type Props = {
 }
 
 const Add = (props: Props) => {
-    const [formData, setFormData] = React.useState<Record<string, any>>({});
+    const [formData, setFormData] = React.useState<Record<string, unknown>>({});
 
 
     const queryClient = useQueryClient();
 
     const mutation = useMutation({
-        mutationFn: () => {
+        mutationFn: (formData: Record<string, unknown>) => {
             return fetch(`http://localhost:8000/api/${props.slug}`, {
                 method: "POST",
                 headers: {

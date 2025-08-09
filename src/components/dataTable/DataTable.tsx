@@ -6,9 +6,14 @@ import { Link } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 
+type RowData = {
+    id?: string | number;
+    [key: string]: string | number | boolean | null | undefined;
+};
+
 type Props = {
     columns: GridColDef[];
-    rows: object[];
+    rows: RowData[];
     slug: string;
 }
 
