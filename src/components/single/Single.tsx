@@ -7,7 +7,7 @@ type Props = {
     id: number | string;
     img?: string;
     title: string;
-    info: Record<string, string | number | boolean | object>,
+    info: object,
     chart: {
         dataKeys: { name: string; color: string }[];
         data: { name: string; visits: number; orders: number }[];

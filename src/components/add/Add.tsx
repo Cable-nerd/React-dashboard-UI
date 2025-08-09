@@ -10,7 +10,14 @@ type Props = {
 }
 
 const Add = (props: Props) => {
-    const [formData, setFormData] = React.useState<Record<string, unknown>>({});
+    const [formData, setFormData] = React.useState<Record<string, string | number>>(
+        props.columns.reduce((acc, column) => {
+            if (column.field !== "id" && column.field !== "img") {
+                acc[column.field] = column.type === 'number' ? 0 : '';
+            }
+            return acc;
+        }, {} as Record<string, string | number>)
+    );
 
 
     const queryClient = useQueryClient();
@@ -32,17 +39,17 @@ const Add = (props: Props) => {
         }
     })
 
- const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  try {
-    const response = await mutation.mutateAsync(formData);
-    if (response.ok) {
-      props.setOpen(false);
-    }
-  } catch (error) {
-    console.error("Creation failed:", error);
-  }
-};
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const response = await mutation.mutateAsync(formData);
+            if (response.ok) {
+                props.setOpen(false);
+            }
+        } catch (error) {
+            console.error("Creation failed:", error);
+        }
+    };
 
     return (
         <div className='add'>
@@ -59,8 +66,13 @@ const Add = (props: Props) => {
                                     type={column.type === 'number' ? 'number' : 'text'}
                                     placeholder={column.field}
                                     name={column.field}
-                                    value={formData[column.field] || ''}
-                                    onChange={(e) => setFormData({ ...formData, [column.field]: e.target.value })}
+                                    value={formData[column.field] as string | number | undefined || ''}
+                                    onChange={(e) => setFormData({
+                                        ...formData,
+                                        [column.field]: column.type === 'number'
+                                            ? Number(e.target.value)
+                                            : e.target.value
+                                    })}
                                 />
                             </div>
                         ))}
