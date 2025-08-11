@@ -3,17 +3,19 @@ import "./single.scss"
 import { Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 
+
 type Props = {
-    id: number | string;
-    img?: string;
-    title: string;
-    info: object,
-    chart: {
-        dataKeys: { name: string; color: string }[];
-        data: { name: string; visits: number; orders: number }[];
-    }
-    activities?: { time: string; text: string }[];
-}
+  id: number | string;
+  img?: string;
+  title: string;
+  info: Record<string, string>; // any string key → string value
+  chart: {
+    dataKeys: { name: string; color: string }[];
+    data: { name: string; visits: number; clicks?: number; orders?: number }[];
+  };
+  activities?: { time: string; text: string }[];
+};
+
 
 const Single: React.FC<Props> = (props: Props) => {
 
